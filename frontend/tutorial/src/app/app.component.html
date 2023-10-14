@@ -1,0 +1,30 @@
+<div id="titulo">
+    <h1>Cadastro - {{title}}</h1>
+</div>
+<div id="principal">
+    <form>
+        <div class="entrada">
+            <label class="descricao">Nome:</label>
+            <input class="dados" type="text" name="txtNome" id="txtNome" placeholder="Digite o nome...">
+        </div>
+        <div class="entrada">
+            <label>Idade:</label>
+            <input class="dados" type="text" name="txtIdade" id="txtIdade" placeholder="Idade">
+        </div>
+        <div class="entrada">
+            <label>Apelido:</label>
+            <input class="dados" type="text" name="txtApelido" id="txtApelido" placeholder="Digite o apelido...">
+        </div>
+        <div class="entrada">
+            <label>Município:</label>
+            <select class="dados" name="municipio" id="municipio">
+                <option value="1">Niterói</option>
+                <option value="2">São Gonçalo</option>
+                <option value="3">Rio de Janeiro</option>
+            </select>
+        </div>
+        <div id="barra">
+            <input type="button" value="Gravar" (click)="gravarDados()">
+        </div>
+    </form>
+</div>

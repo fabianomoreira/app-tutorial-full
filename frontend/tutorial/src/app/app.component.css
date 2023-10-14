@@ -1,0 +1,40 @@
+#titulo{
+    display: flex;
+    height: 80px;
+    color: white;
+    background-color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+}
+
+form{
+    margin-top: 2em;
+    width: 40%;
+    background-color: coral;
+    border-radius: 1em;
+    padding: 2em;
+}
+
+.entrada{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1em 0em 1em 0em;
+}
+
+#principal{
+    display: flex;
+    justify-content: center;
+}
+
+#barra{
+    display: flex;
+    justify-content: center;
+}
+
+.descricao{
+    color: white;
+}
+
+.dados{
+    width: 50%;
+    margin-left: 6em;
+}
