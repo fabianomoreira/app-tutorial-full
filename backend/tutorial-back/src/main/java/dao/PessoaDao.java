@@ -11,6 +11,95 @@ import model.Pessoa;
 import query.QueryPessoa;
 
 public class PessoaDao {
+	
+	public boolean alterar(Pessoa p) {
+		boolean resultado = true;
+		Dao dao = new Dao();
+		
+		Connection cnx = dao.getConexao();
+		
+		String SQL = QueryPessoa.QUERY_ALTERAR_PESSOA;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = cnx.prepareStatement(SQL);
+			
+			ps.setString(1, p.getNome());
+			ps.setInt(2, p.getIdade());
+			ps.setString(3, p.getApelido());
+			ps.setInt(4, p.getIdMunicipio());
+			ps.setInt(5, p.getId());
+			
+			int i = ps.executeUpdate();
+			
+			resultado = i > 0 ? true : false;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+	
+	public boolean excluir(int id) {
+		boolean resultado = true;
+		Dao dao = new Dao();
+		
+		Connection cnx = dao.getConexao();
+		
+		String SQL = QueryPessoa.QUERY_EXCLUIR_PESSOA;
+		
+		PreparedStatement ps;
+		
+		try {
+			ps = cnx.prepareStatement(SQL);
+			
+			ps.setInt(1, id);
+			
+			int i = ps.executeUpdate();
+			
+			resultado = i > 0 ? true : false;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+	
+	public String incluir(Pessoa p) {
+		boolean resultado = true;
+		Dao dao = new Dao();
+		
+		Connection cnx = dao.getConexao();
+		
+		String SQL = QueryPessoa.QUERY_INCLUIR_PESSOA;
+		
+		PreparedStatement ps;
+		String protocolo = null;
+		
+		try {
+			ps = cnx.prepareStatement(SQL);
+			
+			ps.setString(1, p.getNome());
+			ps.setInt(2, p.getIdade());
+			ps.setString(3, p.getApelido());
+			ps.setInt(4, p.getIdMunicipio());
+			
+			int i = ps.executeUpdate();
+			
+			resultado = i > 0 ? true : false;
+			
+			protocolo = this.gerarProtocolo(p);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return protocolo;
+	}
+	
 	public List<Pessoa> listar(){
 		Dao dao = new Dao();
         Connection cnx = dao.getConexao();
@@ -41,5 +130,9 @@ public class PessoaDao {
         } finally {
             return lista;
         }
+	}
+	
+	private String gerarProtocolo(Pessoa p) {
+		return (p.getNome().substring(0, 3)) + p.getIdade() + "PES01";
 	}
 }
